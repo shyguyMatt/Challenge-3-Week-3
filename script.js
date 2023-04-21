@@ -1,10 +1,15 @@
 // Assignment Code
+
+//initializing arrays to be used by the password generator.
 var generateBtn = document.querySelector("#generate");
 var lowerCase = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
 var upperCase = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
 var specialChar = ['!','@','#','$','%','&','*','?'];
 var numeric = ['1','2','3','4','5','6','7','8','9','0'];
 
+
+// this function grabs a random intager from a given range
+//I got this function off of mdn developer Math.random page.
 function getRandomInt(min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);
@@ -21,6 +26,7 @@ function writePassword() {
 
     if(length === null) return;
 
+    //returns the function if the given input is not in a valid range
     function validateLength(length) {
       if(length >= 8 && length <= 128) return true;
       else if(length === null) return true;
@@ -30,6 +36,7 @@ function writePassword() {
       }
     }
 
+    // a do while loop that will only complete if the inputs are valid
     do{
       var upper = window.confirm("Would you like to include uppercase letters in your password?");
       var lower = window.confirm("Would you like to include lowercase letters in you password?");
@@ -45,7 +52,9 @@ function writePassword() {
       else return true;
     }
 
-
+    // loops that will choose 1-4 for upper, lower, special, or number
+    // and then loops based on the previous loop that will choose a random number for the type
+    // repeats until password length is reached.
     for (var i = 0; i<length; i++) {
       randInt = getRandomInt(0,4);
       if(randInt == 0 && upper) {
